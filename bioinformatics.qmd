@@ -1,0 +1,21 @@
+---
+title: "Bioinformatics"
+format: 
+  html:
+    page-layout: full
+---
+
+## Metagenomics
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+metagenomics <- read_csv("data/Metagenomics.csv")
+datatable(metagenomics,
+          escape = FALSE,
+          rownames = FALSE)
+```

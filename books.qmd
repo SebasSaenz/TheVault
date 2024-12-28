@@ -1,0 +1,33 @@
+---
+title: "Books"
+format: 
+  html:
+    page-layout: full
+---
+
+## Scientific Books
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(DT)
+
+sci_books <- read_csv("data/scientific_books.csv")
+datatable(sci_books,
+          escape = FALSE,
+          rownames = FALSE)
+```
+
+## Books I read
+
+```{r}
+#| echo: false
+#| warning: false
+
+me_books <- read_csv("data/me_books.csv")
+datatable(me_books,
+          escape = FALSE,
+          rownames = FALSE)
+```
