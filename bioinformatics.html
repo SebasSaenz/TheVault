@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -126,10 +92,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="./bioinformatics.html" rel="" target="" aria-current="page">
  <span class="menu-text">Bioinformatics</span></a>
   </li>  
@@ -154,6 +116,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#metagenomics" id="toc-metagenomics" class="nav-link active" data-scroll-target="#metagenomics">Metagenomics</a></li>
+  <li><a href="#genomics" id="toc-genomics" class="nav-link" data-scroll-target="#genomics">Genomics</a></li>
+  <li><a href="#s-rrna-amplicons" id="toc-s-rrna-amplicons" class="nav-link" data-scroll-target="#s-rrna-amplicons">16S rRNA amplicons</a></li>
+  <li><a href="#metaproteomics" id="toc-metaproteomics" class="nav-link" data-scroll-target="#metaproteomics">Metaproteomics</a></li>
   </ul>
 </nav>
     </div>
@@ -180,43 +145,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="metagenomics" class="level2">
 <h2 class="anchored" data-anchor-id="metagenomics">Metagenomics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>metagenomics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Metagenomics.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 30 Columns: 5
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (5): Tool, Tag, Description, Repository, Paper
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(metagenomics,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item" id="htmlwidget-ff58d7c2aef9a1e95f9a" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ff58d7c2aef9a1e95f9a">{"x":{"filter":"none","vertical":false,"data":[["Blast+","Spades","MEGAHIT","MetaWrap","ComeBin","SeminBin2","MetaBat2","DASTool","dRep","CD-HIT","CRISPRCasTyper","PADLOC","DefenseFinder","Nonpareil","METABOLIC","DRAM","InterProScan","Proka","CheckM2","CheckV","geNomad","iPHOP","Phyloplan","CoverM","bbtols","TrimGalore","Kaiju","GTDB-tk","GVClass","Kraken"],["Aligment","Assembly","Assembly","Bining","Bining","Bining","Bining","Bining integration","Clustering","Clustering","CRISPR-Cas annotation","Defence system annotation","Defence system annotation","Diversity","functional annotation","functional annotation","Funtional annotation","Gene annotation","Genome/bin quality","Genome/bin quality","MGEs annotation","Phage-host annotation","Phylogeny","Read mapping","Read quality","Read quality","Taxonomy","Taxonomy","Taxonomy",null],[null,null,null,null,null,null,null,"It is an automated method that integrates the results of a flexible number of binning algorithms to calculate an optimized, non-redundant set of bins from a single assembly",null,null,null,null,"The tool annotates DS and anti-DS",null,null,null,null,null,"Isolates and MAGs","Virus","Identify viruses and plasmids in sequencing data (isolates, metagenomes, and metatranscriptomes)",null,null,null,null,null,null,null,"Assigns taxonomy to putative giant virus contigs or metagenome assembled genomes",null],[null,null,null,null,null,null,null,"<a href=\"https://github.com/cmks/DAS_Tool\">GitHub<\/a>",null,null,null,null,"https://github.com/mdmparis/defense-finder",null,null,null,null,"https://github.com/tseemann/prokka","https://github.com/chklovski/CheckM2",null,"https://github.com/apcamargo/genomad",null,null,null,null,"https://github.com/FelixKrueger/TrimGalore",null,null,"https://github.com/NeLLi-team/gvclass",null],[null,null,null,null,null,null,null,"<a href=\"https://www.nature.com/articles/s41564-018-0171-1\">Nature Microbiology<\/a>",null,null,null,null,"https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkae1171/7919512?utm_source=advanceaccess&utm_campaign=nar&utm_medium=email&login=true",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tool<\/th>\n      <th>Tag<\/th>\n      <th>Description<\/th>\n      <th>Repository<\/th>\n      <th>Paper<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"name":"Tool","targets":0},{"name":"Tag","targets":1},{"name":"Description","targets":2},{"name":"Repository","targets":3},{"name":"Paper","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-829ca4a2ff58bf838482" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-829ca4a2ff58bf838482">{"x":{"filter":"none","vertical":false,"data":[["Blast+","Spades","MEGAHIT","MetaWrap","ComeBin","SeminBin2","MetaBat2","DASTool","dRep","CD-HIT","CRISPRCasTyper","PADLOC","DefenseFinder","Nonpareil","METABOLIC","DRAM","InterProScan","Proka","CheckM2","CheckV","geNomad","iPHOP","Phyloplan","CoverM","bbtols","TrimGalore","Kaiju","GTDB-tk","GVClass","Kraken"],["Aligment","Assembly","Assembly","Bining","Bining","Bining","Bining","Bining integration","Clustering","Clustering","CRISPR-Cas annotation","Defence system annotation","Defence system annotation","Diversity","functional annotation","functional annotation","Funtional annotation","Gene annotation","Genome/bin quality","Genome/bin quality","MGEs annotation","Phage-host annotation","Phylogeny","Read mapping","Read quality","Read quality","Taxonomy","Taxonomy","Taxonomy",null],[null,null,null,null,null,null,null,"It is an automated method that integrates the results of a flexible number of binning algorithms to calculate an optimized, non-redundant set of bins from a single assembly",null,null,null,null,"The tool annotates DS and anti-DS",null,null,null,null,null,"Isolates and MAGs","Virus","Identify viruses and plasmids in sequencing data (isolates, metagenomes, and metatranscriptomes)",null,null,null,null,null,null,null,"Assigns taxonomy to putative giant virus contigs or metagenome assembled genomes",null],[null,null,null,null,null,null,null,"<a href=\"https://github.com/cmks/DAS_Tool\">GitHub<\/a>",null,null,null,null,"https://github.com/mdmparis/defense-finder",null,null,null,null,"https://github.com/tseemann/prokka","https://github.com/chklovski/CheckM2",null,"https://github.com/apcamargo/genomad",null,null,null,null,"https://github.com/FelixKrueger/TrimGalore",null,null,"https://github.com/NeLLi-team/gvclass",null],[null,null,null,null,null,null,null,"<a href=\"https://www.nature.com/articles/s41564-018-0171-1\">Nature Microbiology<\/a>",null,null,null,null,"https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkae1171/7919512?utm_source=advanceaccess&utm_campaign=nar&utm_medium=email&login=true",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Tool<\/th>\n      <th>Tag<\/th>\n      <th>Description<\/th>\n      <th>Repository<\/th>\n      <th>Paper<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"name":"Tool","targets":0},{"name":"Tag","targets":1},{"name":"Description","targets":2},{"name":"Repository","targets":3},{"name":"Paper","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+</section>
+<section id="genomics" class="level2">
+<h2 class="anchored" data-anchor-id="genomics">Genomics</h2>
+</section>
+<section id="s-rrna-amplicons" class="level2">
+<h2 class="anchored" data-anchor-id="s-rrna-amplicons">16S rRNA amplicons</h2>
+</section>
+<section id="metaproteomics" class="level2">
+<h2 class="anchored" data-anchor-id="metaproteomics">Metaproteomics</h2>
 
 
 </section>
