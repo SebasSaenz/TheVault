@@ -6,8 +6,6 @@ website:
   title: "TheVault"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - bioinformatics.qmd
       - books.qmd
 

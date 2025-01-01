@@ -8,7 +8,6 @@ format:
 ## Metagenomics
 
 ```{r}
-
 #| echo: false
 #| warning: false
 
@@ -20,3 +19,9 @@ datatable(metagenomics,
           escape = FALSE,
           rownames = FALSE)
 ```
+
+## Genomics
+
+## 16S rRNA amplicons
+
+## Metaproteomics
